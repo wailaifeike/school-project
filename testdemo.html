@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jsonp</title>
+</head>
+<body>
+<input type="submit" value="点我发请求" id="btn">
+<script src="js/jquery-3.1.1.js"></script>
+
+
+<script>
+
+    function test (data){
+        alert('我是本地函数，可以被跨域的remote.js文件调用，远程js带来的数据是：'+data);
+    };
+
+    $("#btn").click(function () {
+
+                var script = document.createElement('script');
+                script.src ="http://127.0.0.1:8011/test/";
+                document.body.appendChild(script);
+
+                document.body.removeChild(script);
+
+
+    })
+
+</script>
+
+
+</body>
+</html>
