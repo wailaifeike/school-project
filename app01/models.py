@@ -16,7 +16,7 @@ class Notice(models.Model):
     content = models.TextField(null=True,blank=True)
     user = models.ForeignKey(to="UserInfo",on_delete=models.CASCADE,default=1)
     ctime = models.DateTimeField(auto_created=True)
-    choices = ((1,"未审核"),
-              (2,"审核中"),
-              (3,"已发布"))
-    status = models.CharField(choices=choices,default=1,max_length=4)
+    choices = (("1","未审核"),
+              ("2","审核中"),
+              ("3","已发布"))
+    status = models.CharField(choices=choices,default="1",max_length=4)

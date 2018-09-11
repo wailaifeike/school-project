@@ -52,7 +52,6 @@ class NoticeView(APIView):
             notice_list = models.Notice.objects.all()
             # print(notice_list)
             bs = serlize.NoticeSerializer(instance=notice_list,many=True)
-            print(bs.data)
             for item in bs.data:
                 if item.get("status") == "1":
                     item["status"] = "未审核"
@@ -67,6 +66,21 @@ class NoticeView(APIView):
             ret["errors"] = "获取失败"
 
         return Response(ret)
+
+    def post(self,request,*args,**kwargs):
+        ret = {"code": "1000"}
+        try:
+            notice_data = request.data
+            id = notice_data.get('id','1')
+            # print("data",notice_data)
+            # print("*args",args)
+            # print("**kwargs",kwargs)
+            models.Notice.objects.filter(pk=id).update(**notice_data)
+        except Exception as e:
+            ret['errors'] =e
+
+        return Response(ret)
+
 
 
 def test(request):

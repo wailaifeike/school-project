@@ -21,7 +21,7 @@ from app01 import views
 from . import settings
 from django.views.static import serve
 urlpatterns = [
-    # url('admin/', admin.site.urls),
+    url('admin/', admin.site.urls),
     url('test/', views.test),
     url('admin/', admin.site.urls),
     url(r'login/$', auth.AuthView.as_view()),
